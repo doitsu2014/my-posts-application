@@ -6,7 +6,11 @@ This is my posts application, I use combined TailwindCss and Next framework to d
 
 ## Preview
 
-![alt](https://raw.githubusercontent.com/doitsu2014/my-posts-application/main/github-gallery/preview-01.png)
+<div class="text-center p-3">
+ <span class="border-wrap">
+  <img src="/doitsu2014/my-posts-application/blob/main/github-gallery/preview-01.png?raw=true" alt="preview-01.png">
+ </span>
+</div>
 
 ## How to run dev env
 
