@@ -6,7 +6,7 @@ This is my posts application, I use combined TailwindCss and Next framework to d
 
 ## Preview
 
-![alt](https://github.com/doitsu2014/my-posts-application/github-gallery/preview-01.png)
+![alt](https://github.com/doitsu2014/my-posts-application/main/github-gallery/preview-01.png)
 
 ## How to run dev env
 
