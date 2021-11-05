@@ -11,7 +11,6 @@ class DotConnection extends React.Component {
 			x: 0,
 			y: 0
 		};  // mouse location
-		this.numberOfStars = 250;
 	}
 
 	componentDidMount() {
@@ -24,6 +23,7 @@ class DotConnection extends React.Component {
 		this.canvasContext = this.canvas.getContext('2d');
 		this.canvas.width = window.innerWidth;
 		this.canvas.height = window.document.querySelector('body').clientHeight;
+		this.numberOfStars = parseInt(this.canvas.height / 10);
 
 		// Push stars to array
 		for (var i = 0; i < this.numberOfStars; i++) {

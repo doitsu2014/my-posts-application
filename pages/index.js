@@ -10,16 +10,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Welcome />
-      <hr className="text-black py-8" />
+      <hr className="text-black py-2" />
 
+      <Welcome />
+      <hr className="text-black py-2" />
+{/* 
       <Welcome />
       <hr className="text-black py-8" />
 
       <Welcome />
-      <hr className="text-black py-8" />
-
-      <Welcome />
-      <hr className="text-black py-8" />
+      <hr className="text-black py-8" /> */}
     </section>
   )
 }
