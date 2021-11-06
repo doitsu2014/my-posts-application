@@ -1,80 +1,110 @@
 import React, { useRef } from 'react';
+import { chain } from 'lodash';
 
 class DotConnection extends React.Component {
 	constructor(props) {
 		super(props);
-		this.canvasRef = null;
-		this.setCanvasRef = ele => this.canvasRef = ele;
-		this.stars = []; // Array that contains the stars
-		this.FPS = 80 // Frames per second
-		this.mouse = {
-			x: 0,
-			y: 0
-		};  // mouse location
+		this.canvasRef = React.createRef();
+
+		this.state = {
+			canvas: null,
+			canvasContext: null,
+			numberOfStars: 0,
+			stars: [],
+			FPS: props.FPS || 80,
+			mouse: { x: 0, y: 0 },
+		};
+
+		// this.state.canvas = null;
+		// this.state.stars = []; // Array that contains the stars
+		// this.state.FPS = 80 // Frames per second
+		// this.state.mouse = {
+		// 	x: 0,
+		// 	y: 0
+		// };  // mouse location
+		// this.state.numberOfStars = 0;
+	}
+
+	render() {
+		return (
+			<div className="absolute w-full z-0">
+				<canvas ref={this.canvasRef} className="bg-opacity-0"></canvas>
+			</div>
+		)
 	}
 
 	componentDidMount() {
 		window.addEventListener('mousemove', (evt) => {
-			this.mouse.x = evt.clientX + window.scrollX;
-			this.mouse.y = evt.clientY + window.scrollY;
+			this.setState({
+				mouse: {
+					x: evt.clientX + window.scrollX,
+					y: evt.clientY + window.scrollY
+				}
+			});
 		});
 
-		this.canvas = this.canvasRef;
-		this.canvasContext = this.canvas.getContext('2d');
-		this.canvas.width = window.innerWidth;
-		this.canvas.height = window.document.querySelector('body').clientHeight;
-		this.numberOfStars = parseInt(this.canvas.height / 10);
+		this.setState(state => {
+			state.canvas = this.canvasRef.current;
+			state.canvas.width = window.innerWidth;
+			state.canvas.height = window.document.querySelector('body').clientHeight;
+			state.numberOfStars = parseInt(state.canvas.height / 5);
+			const initialStars = [];
+			for (var i = 0; i < state.numberOfStars; i++) {
+				initialStars.push({
+					x: Math.random() * state.canvas.width,
+					y: Math.random() * state.canvas.height,
+					radius: Math.random() * 1 + 1,
+					vx: Math.floor(Math.random() * 50) - 25,
+					vy: Math.floor(Math.random() * 50) - 25
+				});
+			}
+			state.stars = initialStars;
+			state.canvasContext = state.canvas.getContext('2d')
+			return state;
+		});
 
-		// Push stars to array
-		for (var i = 0; i < this.numberOfStars; i++) {
-			this.stars.push({
-				x: Math.random() * this.canvas.width,
-				y: Math.random() * this.canvas.height,
-				radius: Math.random() * 1 + 1,
-				vx: Math.floor(Math.random() * 50) - 25,
-				vy: Math.floor(Math.random() * 50) - 25
-			});
-		}
 
 		// Update and draw
 		const tick = () => {
-			this.draw();
-			this.update();
+			if (this.state.canvasContext) {
+				this.draw();
+				this.update();
+			}
 			requestAnimationFrame(tick);
 		}
 		tick();
 	}
 
 	draw() {
-		this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
-		this.canvasContext.globalCompositeOperation = "lighter";
+		this.state.canvasContext.clearRect(0, 0, this.state.canvas.width, this.state.canvas.height);
+		this.state.canvasContext.globalCompositeOperation = "lighter";
 
-		for (var i = 0, x = this.stars.length; i < x; i++) {
-			const s = this.stars[i];
-			this.canvasContext.fillStyle = "#000";
-			this.canvasContext.beginPath();
-			this.canvasContext.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
-			this.canvasContext.fill();
-			this.canvasContext.fillStyle = 'white';
-			this.canvasContext.stroke();
+		for (var i = 0, x = this.state.stars.length; i < x; i++) {
+			const s = this.state.stars[i];
+			this.state.canvasContext.fillStyle = "#000";
+			this.state.canvasContext.beginPath();
+			this.state.canvasContext.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
+			this.state.canvasContext.fill();
+			this.state.canvasContext.fillStyle = 'white';
+			this.state.canvasContext.stroke();
 		}
 
-		this.canvasContext.beginPath();
-		for (var i = 0, x = this.stars.length; i < x; i++) {
-			let starI = this.stars[i];
-			this.canvasContext.moveTo(starI.x, starI.y);
-			if (this.distance(this.mouse, starI) < 150) this.canvasContext.lineTo(this.mouse.x, this.mouse.y);
-			for (var j = 0, x = this.stars.length; j < x; j++) {
-				var starII = this.stars[j];
+		this.state.canvasContext.beginPath();
+		for (var i = 0, x = this.state.stars.length; i < x; i++) {
+			let starI = this.state.stars[i];
+			this.state.canvasContext.moveTo(starI.x, starI.y);
+			if (this.distance(this.state.mouse, starI) < 150) this.state.canvasContext.lineTo(this.state.mouse.x, this.state.mouse.y);
+			for (var j = 0, x = this.state.stars.length; j < x; j++) {
+				let starII = this.state.stars[j];
 				if (this.distance(starI, starII) < 150) {
-					//this.canvasContext.globalAlpha = (1 / 150 * distance(starI, starII).toFixed(1));
-					this.canvasContext.lineTo(starII.x, starII.y);
+					//this.state.canvasContext.globalAlpha = (1 / 150 * distance(starI, starII).toFixed(1));
+					this.state.canvasContext.lineTo(starII.x, starII.y);
 				}
 			}
 		}
-		this.canvasContext.lineWidth = 0.15;
-		this.canvasContext.strokeStyle = 'black';
-		this.canvasContext.stroke();
+		this.state.canvasContext.lineWidth = 0.03;
+		this.state.canvasContext.strokeStyle = 'black';
+		this.state.canvasContext.stroke();
 	}
 
 	distance(point1, point2) {
@@ -92,24 +122,17 @@ class DotConnection extends React.Component {
 
 	// Update star locations
 	update() {
-		for (var i = 0, x = this.stars.length; i < x; i++) {
-			var s = this.stars[i];
+		for (var i = 0, x = this.state.stars.length; i < x; i++) {
+			var s = this.state.stars[i];
 
-			s.x += s.vx / this.FPS;
-			s.y += s.vy / this.FPS;
+			s.x += s.vx / this.state.FPS;
+			s.y += s.vy / this.state.FPS;
 
-			if (s.x < 0 || s.x > this.canvas.width) s.vx = -s.vx;
-			if (s.y < 0 || s.y > this.canvas.height) s.vy = -s.vy;
+			if (s.x < 0 || s.x > this.state.canvas.width) s.vx = -s.vx;
+			if (s.y < 0 || s.y > this.state.canvas.height) s.vy = -s.vy;
 		}
 	}
 
-	render() {
-		return (
-			<div className="absolute w-full z-0">
-				<canvas ref={this.setCanvasRef} className="bg-opacity-0"></canvas>
-			</div>
-		)
-	}
 }
 
 export default DotConnection;

@@ -4,22 +4,16 @@ export default function Home() {
   return (
     // <main className="flex flex-col items-center justify-center w-full py-12 bg-bg-dot-01 bg-no-repeat bg-opacity-0">
     // bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100
-    <section className="flex flex-col items-center justify-center">
+    <section className="flex flex-col items-center justify-center bg-black text-white container mx-auto rounded-2xl py-8 w-1/2 md:w-5/6 sm:w-11/12">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Welcome />
-      <hr className="text-black py-2" />
+      <hr className="text-black lg:py-8 md:py-2" />
 
       <Welcome />
-      <hr className="text-black py-2" />
-{/* 
-      <Welcome />
-      <hr className="text-black py-8" />
-
-      <Welcome />
-      <hr className="text-black py-8" /> */}
+      <hr className="text-black lg:py-8 md:py-2" />
     </section>
   )
 }
