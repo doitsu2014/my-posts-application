@@ -25,6 +25,10 @@ module.exports = {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
     },
+    stroke: theme => ({
+      'black': theme('colors.black'),
+      'white': theme('colors.white'),
+    }),
     extend: {
       spacing: {
         '128': '32rem',
@@ -35,7 +39,7 @@ module.exports = {
       },
       backgroundImage: {
         'bg-dot-01': 'url(/bg-dot-01.jpg)',
-        'bg-dot-02': 'url(/bg-dot-02.jpg)' 
+        'bg-dot-02': 'url(/bg-dot-02.jpg)'
       }
     }
   },

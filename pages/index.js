@@ -4,7 +4,7 @@ export default function Home() {
   return (
     // <main className="flex flex-col items-center justify-center w-full py-12 bg-bg-dot-01 bg-no-repeat bg-opacity-0">
     // bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100
-    <section className="flex flex-col items-center justify-center bg-gray-300 text-black drop-shadow-2xl shadow-2xl container mx-auto rounded-2xl py-8 w-1/2 md:w-5/6 sm:w-11/12">
+    <section className="flex flex-col items-center justify-center bg-gray-300 text-black transition-shadow drop-shadow-2xl shadow-2xl container mx-auto rounded-2xl py-8 w-1/2 md:w-5/6 sm:w-11/12">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />

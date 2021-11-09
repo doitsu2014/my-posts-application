@@ -1,5 +1,5 @@
 import DotConnection from "./dotConnection";
-import NavBar from "./navigationBar";
+import NavBar from "./navigation/navigationBar";
 export default function Layout({ children }) {
 	return (
 		<div className="w-screen">
