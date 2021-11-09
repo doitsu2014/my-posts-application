@@ -6,7 +6,7 @@ export default function Layout({ children }) {
 			<DotConnection />
 			<div className="relative z-10">
 				<NavBar />
-				<main className="w-full py-12 bg-gray-300 bg-opacity-50">
+				<main className="w-full pt-2 pb-8 bg-gray-300 bg-opacity-50">
 					{children}
 				</main>
 				<footer className="flex items-center justify-center w-full border-t bg-black text-white">
