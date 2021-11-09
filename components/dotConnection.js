@@ -14,15 +14,6 @@ class DotConnection extends React.Component {
 			FPS: props.FPS || 80,
 			mouse: { x: 0, y: 0 },
 		};
-
-		// this.state.canvas = null;
-		// this.state.stars = []; // Array that contains the stars
-		// this.state.FPS = 80 // Frames per second
-		// this.state.mouse = {
-		// 	x: 0,
-		// 	y: 0
-		// };  // mouse location
-		// this.state.numberOfStars = 0;
 	}
 
 	render() {
@@ -47,7 +38,7 @@ class DotConnection extends React.Component {
 			state.canvas = this.canvasRef.current;
 			state.canvas.width = window.innerWidth;
 			state.canvas.height = window.document.querySelector('body').clientHeight;
-			state.numberOfStars = parseInt(state.canvas.height / 5);
+			state.numberOfStars = parseInt((state.canvas.height + state.canvas.width) / 10);
 			const initialStars = [];
 			for (var i = 0; i < state.numberOfStars; i++) {
 				initialStars.push({

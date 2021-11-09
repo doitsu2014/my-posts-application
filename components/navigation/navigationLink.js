@@ -1,7 +1,13 @@
 import React from 'react';
 import Link from 'next/link'
+import utilities from '../../common/utilities';
 
 class NavigationLink extends React.Component {
+
+	/**
+	 * 
+	 * @param { href, isActive, title } props 
+	 */
 	constructor(props) {
 		super(props);
 	}
@@ -10,9 +16,18 @@ class NavigationLink extends React.Component {
 		return !this.props.isMobile
 			? (
 				<Link href={this.props.href}>
-					<a className={this.props.isActive
-						? "self-center px-4 py-2 mx-4 rounded-md bg-black text-white"
-						: "self-center px-4 py-2 mx-4 hover:rounded-md hover:bg-black hover:text-white"}
+					<a className={utilities.buildClassNames({
+						'self-center': true,
+						'px-4': true,
+						'py-2': true,
+						'mx-4': true,
+						'hover:rounded-md': !this.props.isActive,
+						'hover:bg-black': !this.props.isActive,
+						'hover:text-white': !this.props.isActive,
+						'rounded-md': this.props.isActive,
+						'bg-black': this.props.isActive,
+						'text-white': this.props.isActive,
+					})}
 					>
 						{this.props.title}
 					</a>
@@ -20,13 +35,20 @@ class NavigationLink extends React.Component {
 			)
 			: (
 				<Link href={this.props.href}>
-					<a className={this.props.isActive
-						? "w-full text-center py-2 bg-white text-black"
-						: "w-full text-center py-2 hover:bg-white hover:text-black"}
+					<a className={
+						utilities.buildClassNames({
+							'w-full': true,
+							'text-center': true,
+							'py-2': true,
+							'bg-white': this.props.isActive,
+							'text-black': this.props.isActive,
+							'hover:bg-black': !this.props.isActive,
+							'hover:text-white': !this.props.isActive,
+						})}
 					>
 						{this.props.title}
 					</a>
-				</Link>
+				</Link >
 			);
 	}
 
