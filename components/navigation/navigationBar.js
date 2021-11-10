@@ -7,28 +7,43 @@ import NavigationLink from './navigationLink';
 class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
-		const menu = [
-			{
-				href: '/',
-				title: 'About Me',
-			},
-			{
-				href: '/programming',
-				title: 'Programming',
-			},
-			{
-				href: '/crypto-industry',
-				title: 'Crypto Industry',
-			}
-		];
-
 		this.state = {
-			menu,
-			// A pair of controlling animation 
+			menu: [
+				{
+					href: '/',
+					title: 'About Me',
+					isActive: false,
+				},
+				{
+					href: '/programming',
+					title: 'Programming',
+					isActive: false,
+				},
+				{
+					href: '/crypto-industry',
+					title: 'Crypto Industry',
+					isActive: false,
+				}
+			],
 			collapsedMobileMenu: true,
 			hiddenMobileMenu: true,
 		};
+	}
 
+	componentDidMount() {
+		this.updateMenuState(this.props.router.asPath);
+		this.props.router.events.on('routeChangeStart', (url) => {
+			this.updateMenuState(url);
+		});
+	}
+
+	updateMenuState(url) {
+		this.setState({
+			menu: this.state.menu.map(e => {
+				e.isActive = e.href === url;
+			})
+			, ...this.state
+		});
 	}
 
 	render() {
@@ -61,7 +76,7 @@ class NavBar extends React.Component {
 						</div>
 						{/* Desktop NavBar section */}
 						<nav className="hidden md:grid md:grid-flow-col md:auto-cols-max justify-end">
-							{this.state.menu.map((ele, i) => (<NavigationLink key={i} href={ele.href} title={ele.title} />))}
+							{this.state.menu.map((ele, i) => (<NavigationLink key={i} {...ele} />))}
 						</nav>
 						<div className="md:hidden flex items-center">
 							<button className="outline-none animate-bounce" onClick={evt => {
@@ -98,7 +113,7 @@ class NavBar extends React.Component {
 						'translate-x-144': this.state.collapsedMobileMenu,
 						'translate-x-0': !this.state.collapsedMobileMenu,
 					})}>
-						{this.state.menu.map((ele, i) => (<NavigationLink key={i} href={ele.href} title={ele.title} isMobile={true} />))}
+						{this.state.menu.map((ele, i) => (<NavigationLink key={i} {...ele} isMobile={true} />))}
 					</nav>
 				</div>
 			</>

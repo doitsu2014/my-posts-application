@@ -14,8 +14,8 @@ export default function Home() {
         <blockquote>
           <p className="text-lg font-semibold text-justify">
             “Hello guys, my name is Duc, and I'm a Software Engineer with more than 4 years of experience in .Net Core,
-            and I also get good experiences on React, I can confidently do develop as a Front End Developer.
-            For now, I'm working on the company with a strong business model in Finance Industry.”
+            and I confidently get good experiences on React, Angular also.
+            For now, I am working on the company with a strong business model in Finance Industry.”
           </p>
         </blockquote>
         <figcaption className="font-medium">

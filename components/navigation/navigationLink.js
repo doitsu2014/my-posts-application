@@ -1,6 +1,7 @@
 import React from 'react';
 import utilities from '../../common/utilities';
 import { withRouter } from 'next/router';
+import Link from 'next/link';
 
 class NavigationLink extends React.Component {
 
@@ -10,46 +11,47 @@ class NavigationLink extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
-		this.state = {
-			isActive: this.props.href === this.props.router.asPath
-		};
 	}
 
 	render() {
 		return !this.props.isMobile
 			? (
-				<a href={this.props.href} className={utilities.buildClassNames({
-					'self-center': true,
-					'px-4': true,
-					'py-2': true,
-					'mx-4': true,
-					'transition-all': true,
-					'duration-200': true,
-					'hover:rounded-md': !this.state.isActive,
-					'hover:bg-black': !this.state.isActive,
-					'hover:text-white': !this.state.isActive,
-					'rounded-md': this.state.isActive,
-					'bg-black': this.state.isActive,
-					'text-white': this.state.isActive,
-				})} >
-					{this.props.title}
-				</a>
+				<Link href={this.props.href}>
+					<a className={utilities.buildClassNames({
+						'self-center': true,
+						'px-4': true,
+						'py-2': true,
+						'mx-4': true,
+						'transition-all': true,
+						'duration-300': true,
+						'hover:rounded-md': !this.props.isActive,
+						'hover:bg-black': !this.props.isActive,
+						'hover:text-white': !this.props.isActive,
+						'rounded-md': this.props.isActive,
+						'bg-black': this.props.isActive,
+						'text-white': this.props.isActive,
+					})} >
+						{this.props.title}
+					</a>
+				</Link>
 			)
 			: (
-				<a href={this.props.href} className={
-					utilities.buildClassNames({
-						'w-full': true,
-						'text-center': true,
-						'py-2': true,
-						'transition-all': true,
-						'duration-200': true,
-						'hover:bg-white': !this.state.isActive,
-						'hover:text-black': !this.state.isActive,
-						'bg-white': this.state.isActive,
-						'text-black': this.state.isActive,
-					})}>
-					{this.props.title}
-				</a>
+				<Link href={this.props.href}>
+					<a className={
+						utilities.buildClassNames({
+							'w-full': true,
+							'text-center': true,
+							'py-2': true,
+							'transition-all': true,
+							'duration-300': true,
+							'hover:bg-white': !this.props.isActive,
+							'hover:text-black': !this.props.isActive,
+							'bg-white': this.props.isActive,
+							'text-black': this.props.isActive,
+						})}>
+						{this.props.title}
+					</a>
+				</Link>
 			);
 	}
 
