@@ -1,3 +1,4 @@
+import { withRouter } from 'next/router';
 import Link from 'next/link';
 import React from 'react';
 import utilities from '../../common/utilities';
@@ -6,28 +7,28 @@ import NavigationLink from './navigationLink';
 class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
+		const menu = [
+			{
+				href: '/',
+				title: 'About Me',
+			},
+			{
+				href: '/programming',
+				title: 'Programming',
+			},
+			{
+				href: '/crypto-industry',
+				title: 'Crypto Industry',
+			}
+		];
+
 		this.state = {
-			menu: [
-				{
-					href: '/',
-					title: 'About Me',
-					isActive: true
-				},
-				{
-					href: '/posts/first-post',
-					title: 'Programming',
-					isActive: false
-				},
-				{
-					href: '/posts/first-post',
-					title: 'Crypto Industry',
-					isActive: false
-				},
-			],
+			menu,
 			// A pair of controlling animation 
 			collapsedMobileMenu: true,
 			hiddenMobileMenu: true,
 		};
+
 	}
 
 	render() {
@@ -39,10 +40,10 @@ class NavBar extends React.Component {
 							<p className="self-center text-lg">✨  Welcome to my house, guys! ✨</p>
 						</div>
 						<form className="flex">
-							<input className="px-2 shadow-md rounded-lg placeholder-gray-500 border border-transparent text-black focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
+							<input className="p-2 shadow-md rounded-lg placeholder-gray-500 border border-transparent text-black focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
 								name="txtSearchValue"
-								placeholder="Search ~~~~~~~~~~~~~>" />
-							<button className="px-2 py-2 my-2 mx-4 hover:bg-white hover:text-black hover:rounded-full">
+								placeholder="Search ~~~~~~~~>" />
+							<button className="px-2 py-2 my-2 mx-4 transition-all duration-200 hover:bg-white hover:text-black hover:rounded-full">
 								(╯°□°）╯︵ ┻━┻))
 							</button>
 						</form>
@@ -60,7 +61,7 @@ class NavBar extends React.Component {
 						</div>
 						{/* Desktop NavBar section */}
 						<nav className="hidden md:grid md:grid-flow-col md:auto-cols-max justify-end">
-							{this.state.menu.map((ele, i) => (<NavigationLink key={i} href={ele.href} title={ele.title} isActive={ele.isActive} />))}
+							{this.state.menu.map((ele, i) => (<NavigationLink key={i} href={ele.href} title={ele.title} />))}
 						</nav>
 						<div className="md:hidden flex items-center">
 							<button className="outline-none animate-bounce" onClick={evt => {
@@ -71,7 +72,7 @@ class NavBar extends React.Component {
 
 								setTimeout(() => this.setState(state => ({
 									hiddenMobileMenu: !currentCollapsedStatus
-								})), 300);
+								})), currentCollapsedStatus ? 0 : 300);
 							}}>
 
 								<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
@@ -92,12 +93,12 @@ class NavBar extends React.Component {
 						'text-lg': true,
 						'transition-all': true,
 						'ease-linear': true,
-						'duration-1000': true,
+						'duration-300': true,
 						'transform': true,
-						'-translate-y-144': this.state.collapsedMobileMenu,
-						'translate-y-0': !this.state.collapsedMobileMenu,
+						'translate-x-144': this.state.collapsedMobileMenu,
+						'translate-x-0': !this.state.collapsedMobileMenu,
 					})}>
-						{this.state.menu.map((ele, i) => (<NavigationLink key={i} href={ele.href} title={ele.title} isActive={ele.isActive} isMobile={true} />))}
+						{this.state.menu.map((ele, i) => (<NavigationLink key={i} href={ele.href} title={ele.title} isMobile={true} />))}
 					</nav>
 				</div>
 			</>
@@ -105,4 +106,4 @@ class NavBar extends React.Component {
 	}
 }
 
-export default NavBar;
+export default withRouter(NavBar);
