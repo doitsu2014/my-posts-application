@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { chain } from 'lodash';
+import { withRouter } from 'next/router';
 
 class DotConnection extends React.Component {
 	constructor(props) {
@@ -25,6 +26,10 @@ class DotConnection extends React.Component {
 	}
 
 	componentDidMount() {
+		this.props.router.events.on('routeChangeComplete', () => {
+			this.initialStars();
+		});
+
 		window.addEventListener('mousemove', (evt) => {
 			this.setState({
 				mouse: {
@@ -34,26 +39,7 @@ class DotConnection extends React.Component {
 			});
 		});
 
-		this.setState(state => {
-			state.canvas = this.canvasRef.current;
-			state.canvas.width = window.innerWidth;
-			state.canvas.height = window.document.querySelector('body').clientHeight;
-			state.numberOfStars = parseInt((state.canvas.height + state.canvas.width) / 10);
-			const initialStars = [];
-			for (var i = 0; i < state.numberOfStars; i++) {
-				initialStars.push({
-					x: Math.random() * state.canvas.width,
-					y: Math.random() * state.canvas.height,
-					radius: Math.random() * 1 + 1,
-					vx: Math.floor(Math.random() * 50) - 25,
-					vy: Math.floor(Math.random() * 50) - 25
-				});
-			}
-			state.stars = initialStars;
-			state.canvasContext = state.canvas.getContext('2d')
-			return state;
-		});
-
+		this.initialStars();
 
 		// Update and draw
 		const tick = () => {
@@ -64,6 +50,30 @@ class DotConnection extends React.Component {
 			requestAnimationFrame(tick);
 		}
 		tick();
+	}
+
+	initialStars() {
+		this.setState(state => {
+			state.canvas = this.canvasRef.current;
+			state.canvas.width = window.innerWidth;
+			state.canvas.height = window.document.querySelector('body').clientHeight;
+			state.numberOfStars = parseInt((state.canvas.height + state.canvas.width) / 10);
+
+			const initialStars = [];
+			for (var i = 0; i < state.numberOfStars; i++) {
+				initialStars.push({
+					x: Math.random() * state.canvas.width,
+					y: Math.random() * state.canvas.height,
+					radius: Math.random() * 1 + 1,
+					vx: Math.floor(Math.random() * 50) - 25,
+					vy: Math.floor(Math.random() * 50) - 25
+				});
+			}
+
+			state.stars = initialStars;
+			state.canvasContext = state.canvas.getContext('2d')
+			return state;
+		});
 	}
 
 	draw() {
@@ -126,4 +136,4 @@ class DotConnection extends React.Component {
 
 }
 
-export default DotConnection;
+export default withRouter(DotConnection);

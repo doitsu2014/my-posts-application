@@ -2,7 +2,7 @@ import DotConnection from "./dotConnection";
 import NavBar from "./navigation/navigationBar";
 export default function Layout({ children }) {
 	return (
-		<div className="w-screen">
+		<div className="w-full">
 			<DotConnection />
 			<div className="relative z-10">
 				<NavBar />
