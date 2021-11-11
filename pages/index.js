@@ -5,8 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>About me | D.TECH</title>
       </Head>
       <figure className="md:flex bg-gray-300 overflow-hidden text-black drop-shadow-xl shadow-xl container mx-auto rounded-2xl p-8 md:p-0 md:max-w-4xl sm:w-11/12">
         <img className="w-32 h-32 rounded-full mx-auto md:w-48 md:h-auto md:rounded-none object-cover" src="/avatar/ducth_black_and_white.jpg" alt="" />
