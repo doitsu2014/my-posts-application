@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
-import { chain } from 'lodash';
-import { withRouter } from 'next/router';
 
 class DotConnection extends React.Component {
 	constructor(props) {
 		super(props);
 		this.canvasRef = React.createRef();
+		this.tickRef = React.createRef();
 
 		this.state = {
 			canvas: null,
@@ -26,10 +25,6 @@ class DotConnection extends React.Component {
 	}
 
 	componentDidMount() {
-		// this.props.router.events.on('routeChangeComplete', () => {
-		// 	this.initialStars();
-		// });
-
 		window.addEventListener('mousemove', (evt) => {
 			this.setState({
 				mouse: {
@@ -41,17 +36,21 @@ class DotConnection extends React.Component {
 
 		this.initialCanvas();
 		this.initialStars();
+		this.tickRef.current = requestAnimationFrame(this.tick);
+	}
 
-		// Update and draw
-		const tick = () => {
-			if (this.state.canvasContext) {
-				this.initialCanvas();
-				this.draw();
-				this.update();
-			}
-			requestAnimationFrame(tick);
+	componentWillUnmount() {
+		cancelAnimationFrame(this.tickRef.current);
+	}
+
+	tick = time => {
+		if (this.state.canvasContext) {
+			this.initialCanvas();
+			this.draw();
+			this.update();
 		}
-		tick();
+
+		this.tickRef.current = requestAnimationFrame(this.tick);
 	}
 
 	initialCanvas() {
@@ -145,4 +144,4 @@ class DotConnection extends React.Component {
 
 }
 
-export default withRouter(DotConnection);
+export default DotConnection;

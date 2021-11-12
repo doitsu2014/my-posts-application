@@ -27,9 +27,9 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {
-        loading ? <Loading />
-          :
-          <Layout>
+        loading
+          ? <Loading />
+          : <Layout>
             <Component {...pageProps} />
           </Layout>
       }
