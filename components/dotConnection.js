@@ -12,7 +12,7 @@ class DotConnection extends React.Component {
 			canvasContext: null,
 			numberOfStars: 0,
 			stars: [],
-			FPS: props.FPS || 80,
+			magicPoint: props.magicPoint || 80,
 			mouse: { x: 0, y: 0 },
 		};
 	}
@@ -26,9 +26,9 @@ class DotConnection extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.router.events.on('routeChangeComplete', () => {
-			this.initialStars();
-		});
+		// this.props.router.events.on('routeChangeComplete', () => {
+		// 	this.initialStars();
+		// });
 
 		window.addEventListener('mousemove', (evt) => {
 			this.setState({
@@ -39,11 +39,13 @@ class DotConnection extends React.Component {
 			});
 		});
 
+		this.initialCanvas();
 		this.initialStars();
 
 		// Update and draw
 		const tick = () => {
 			if (this.state.canvasContext) {
+				this.initialCanvas();
 				this.draw();
 				this.update();
 			}
@@ -52,25 +54,34 @@ class DotConnection extends React.Component {
 		tick();
 	}
 
-	initialStars() {
+	initialCanvas() {
 		this.setState(state => {
 			state.canvas = this.canvasRef.current;
 			state.canvas.width = window.innerWidth;
 			state.canvas.height = window.document.querySelector('body').clientHeight;
+			return state;
+		})
+	}
+
+	initialStars() {
+		this.setState(state => {
 			state.numberOfStars = parseInt((state.canvas.height + state.canvas.width) / 10);
 
-			const initialStars = [];
+			const stars = [];
 			for (var i = 0; i < state.numberOfStars; i++) {
-				initialStars.push({
+				stars.push({
 					x: Math.random() * state.canvas.width,
 					y: Math.random() * state.canvas.height,
 					radius: Math.random() * 1 + 1,
+					// vx: Math.floor(Math.random() * 50) - 25,
+					// vy: Math.floor(Math.random() * 50) - 25
+
 					vx: Math.floor(Math.random() * 50) - 25,
 					vy: Math.floor(Math.random() * 50) - 25
 				});
 			}
 
-			state.stars = initialStars;
+			state.stars = stars;
 			state.canvasContext = state.canvas.getContext('2d')
 			return state;
 		});
@@ -125,10 +136,8 @@ class DotConnection extends React.Component {
 	update() {
 		for (var i = 0, x = this.state.stars.length; i < x; i++) {
 			var s = this.state.stars[i];
-
-			s.x += s.vx / this.state.FPS;
-			s.y += s.vy / this.state.FPS;
-
+			s.x += s.vx / this.state.magicPoint;
+			s.y += s.vy / this.state.magicPoint;
 			if (s.x < 0 || s.x > this.state.canvas.width) s.vx = -s.vx;
 			if (s.y < 0 || s.y > this.state.canvas.height) s.vy = -s.vy;
 		}

@@ -41,6 +41,11 @@ module.exports = {
       backgroundImage: {
         'bg-dot-01': 'url(/bg-dot-01.jpg)',
         'bg-dot-02': 'url(/bg-dot-02.jpg)'
+      },
+      animation: {
+        'bounce-slow': "bounce 1s infinite",
+        'bounce-medium': "bounce 0.8s infinite",
+        'bounce-fast': "bounce 0.6s infinite"
       }
     }
   },

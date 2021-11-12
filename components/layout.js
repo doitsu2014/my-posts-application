@@ -3,7 +3,7 @@ import NavBar from "./navigation/navigationBar";
 export default function Layout({ children }) {
 	return (
 		<div className="w-full">
-			<DotConnection />
+			<DotConnection magicPoint={60} />
 			<div className="relative z-10">
 				<NavBar />
 				<main className="w-full pt-2 pb-8 bg-gray-300 bg-opacity-50">
