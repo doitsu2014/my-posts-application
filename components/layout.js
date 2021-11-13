@@ -1,9 +1,11 @@
 import DotConnection from "./dotConnection";
 import NavBar from "./navigation/navigationBar";
+import { isMobile } from "react-device-detect";
+
 export default function Layout({ children }) {
 	return (
 		<>
-			<DotConnection magicPoint={60} />
+			{!isMobile && <DotConnection magicPoint={60} />}
 			<div className="relative z-10">
 				<NavBar />
 				<main className="w-full pt-2 pb-8 bg-gray-300 bg-opacity-50">{children}</main>
