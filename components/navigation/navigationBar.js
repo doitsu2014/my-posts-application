@@ -98,7 +98,7 @@ export default function NavigationBar() {
 					'translate-x-144': collapsedMobileMenu,
 					'translate-x-0': !collapsedMobileMenu,
 				})}>
-					{/* {menu.map((ele, i) => (<NavigationLink key={i} {...ele} isMobile={true} />))} */}
+					{menu.map((ele, i) => (<NavigationLink key={i} {...ele} isMobile={true} />))}
 				</nav>
 			</div>
 		</>
