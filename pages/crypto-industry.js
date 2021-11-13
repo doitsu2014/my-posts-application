@@ -25,7 +25,7 @@ export default function CryptoIndustry() {
 
 			<section className="mt-8 mx-auto sm:w-11/12 md:w-4/5 bg-none p-4">
 				<h1 className="sm:text-lg md:text-2xl font-bold py-4 text-center">Dot and Kusama ecosystem charts</h1>
-				<div className="grid grid-cols-2">
+				<div className="grid md:grid-cols-2 sm:grid-cols-1">
 					{state.dotEcosystem.map(e => (
 						<div className="p-4">
 							<br />
@@ -36,11 +36,4 @@ export default function CryptoIndustry() {
 			</section>
 		</>
 	);
-
-	{/* <div id="coinmarketcap-widget-coin-price-block"
-						coins="6636,9285,5034,10042,6841,8705,9017"
-						currency="USD"
-						theme="light"
-						transparent="true"
-						show-symbol-logo="true"></div> */}
 }
