@@ -12,6 +12,7 @@ FROM node:lts-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+RUN npm install -g npm@8.1.3 
 RUN npm run build && npm install --ignore-scripts
 
 # Production image, copy all the files and run next
