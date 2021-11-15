@@ -1,29 +1,45 @@
 import { Component } from 'react'
-
+import moment from 'moment';
 class Timeline extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			lines: [
 				{
-					title: `Easy IT Solutions`,
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
-					time: '2021/04 - 2021/08'
+					slug: 'easy-it-solutions',
+					title: `Easy IT Solutions (OneAP Team)`,
+					content: `They have been developing an ecosystem to provide a solution, that resolves problems about B2B Payments.`,
+					fromDate: moment(Date.parse('2021/04')),
+					toDate: moment(Date.now()),
+					roles: ['Senior Dotnet Developer'],
+					isWorking: true,
 				},
 				{
-					title: `ExE Company`,
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
-					time: '2021/01 - 2021/04'
+					slug: 'exe',
+					title: `ExE (Out-sourcing Team)`,
+					content: `There is an outsourcing development environment, I worked on it as an Engineer to develop outsource softwares.`,
+					roles: ['Fullstack Developer', 'Project Manager'],
+					fromDate: moment(Date.parse('2021/04')),
+					toDate: moment(Date.parse('2021/04')),
+					isWorking: false,
 				},
 				{
+					slug: 'reso-group',
 					title: `Reso Group`,
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
-					time: '2021/01 - 2021/04'
+					content: `A child company of Wisky Solution, It has been developing the softwares to serves F&B merchants, there are PoS, CMS.`,
+					roles: ['Team Leader'],
+					fromDate: moment(Date.parse('2018/06')),
+					toDate: moment(Date.parse('2019/03')),
+					isWorking: false,
 				},
 				{
+					slug: 'wisky',
 					title: `Wisky`,
-					content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
-					time: '2021/01 - 2021/04'
+					content: `They are called as Wisky Solution Co., LTD, and they have been providing the solution about Wifi Marketing at Food and Beverage(F&B) merchants.`,
+					roles: ['Junior .Net Developer', 'Fullstack Developer', 'Trainer'],
+					fromDate: moment(Date.parse('2017/04')),
+					toDate: moment(Date.parse('2018/06')),
+					isWorking: false,
 				},
 			]
 		}
@@ -50,7 +66,15 @@ class Timeline extends Component {
 
 									</div>
 									<div className="order-1 bg-gradient-to-tl from-green-100 to-green-400 rounded-lg shadow-xl w-5/12 px-6 py-4">
-										<h3 className="mb-3 font-bold text-black text-xl text-justify">{l.title}</h3>
+										<h2 className="mb-1 font-bold text-black text-xl">{l.title}</h2>
+										<h3 className="mb-2 italic text-md">[{l.fromDate.format('YYYY-MM')} - {l.toDate.format('YYYY-MM')}]</h3>
+										<h3 className="mb-1 text-md">Work as a: </h3>
+										<ul className="mb-2 list-disc list-inside text-sm">
+											{l.roles.map((e, k) => (
+												<li key={k}>{e}</li>
+											))}
+										</ul>
+
 										<p className="text-sm font-medium leading-snug tracking-wide text-black text-opacity-100 text-justify">{l.content}</p>
 									</div>
 								</div>
@@ -71,8 +95,15 @@ class Timeline extends Component {
 											}
 										</div>
 										<div className="order-1 bg-gradient-to-tr from-gray-100 to-gray-400 rounded-lg shadow-xl w-5/12 px-6 py-4">
-											<h3 className="mb-3 font-bold text-gray-800 text-xl text-justify">{l.title}</h3>
-											<p className="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100 text-justify">{l.content}</p>
+											<h2 className="mb-1 font-bold text-gray-800 text-xl text-justify">{l.title}</h2>
+											<h3 className="mb-2 italic text-md">[{l.fromDate.format('YYYY-MM')} - {l.isWorking ? 'now' : l.toDate.format('YYYY-MM')}]</h3>
+											<h3 className="mb-1 text-md">Work as a: </h3>
+											<ul className="mb-2 list-disc list-inside text-sm">
+												{l.roles.map((e, k) => (
+													<li key={k}>{e}</li>
+												))}
+											</ul>
+											<p className="mb-2 text-sm leading-snug tracking-wide text-gray-900 text-opacity-100 text-justify">{l.content}</p>
 										</div>
 									</div>
 								</div>

@@ -14,7 +14,7 @@ export default function Home() {
             <p className="text-lg font-semibold text-justify">
               “Hello guys, my name is Duc, and I'm a Software Engineer with more than 4 years of experience in .Net Core,
               and I confidently get good experiences on React, Angular also.
-              For now, I am working on the company with a strong business model in Finance Industry.”
+              For now, I am working on the company with a strong business model in Fintech industry.”
             </p>
           </blockquote>
           <figcaption className="font-medium">

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import useAnimationFrame from 'use-animation-frame';
 
-export default function DotConnection({magicPoint}) {
+export default function DotConnection({ magicPoint }) {
 	const canvasRef = useRef();
 	const [state, setState] = useState({
 		canvas: null,
@@ -13,21 +13,26 @@ export default function DotConnection({magicPoint}) {
 	})
 
 	useEffect(() => {
-		initialCanvas();
-		initialStars();
+		initial();
+
 		window.addEventListener('mousemove', handleWindowMouseMove);
+		window.addEventListener('resize', handleWindowResize);
 		return () => {
 			window.removeEventListener('mousemove', handleWindowMouseMove);
+			window.removeEventListener('resize', handleWindowResize);
 		}
 	}, [])
 
-
 	useAnimationFrame(() => {
-		if (state.canvasContext) {
+		if (state.canvas && state.canvasContext) {
 			draw();
 			update();
 		}
 	});
+
+	const handleWindowResize = () => {
+		initial();
+	}
 
 	const handleWindowMouseMove = (evt) => {
 		setState({
@@ -39,17 +44,11 @@ export default function DotConnection({magicPoint}) {
 		});
 	}
 
-	const initialCanvas = () => {
+	const initial = () => {
 		setState(state => {
 			state.canvas = canvasRef.current;
 			state.canvas.width = window.innerWidth;
 			state.canvas.height = window.document.querySelector('body').clientHeight;
-			return state;
-		})
-	}
-
-	const initialStars = () => {
-		setState(state => {
 			state.numberOfStars = parseInt((state.canvas.height + state.canvas.width) / 10);
 			const stars = [];
 			for (var i = 0; i < state.numberOfStars; i++) {
@@ -57,9 +56,6 @@ export default function DotConnection({magicPoint}) {
 					x: Math.random() * state.canvas.width,
 					y: Math.random() * state.canvas.height,
 					radius: Math.random() * 1 + 1,
-					// vx: Math.floor(Math.random() * 50) - 25,
-					// vy: Math.floor(Math.random() * 50) - 25
-
 					vx: Math.floor(Math.random() * 50) - 25,
 					vy: Math.floor(Math.random() * 50) - 25
 				});
@@ -74,7 +70,6 @@ export default function DotConnection({magicPoint}) {
 	const draw = () => {
 		state.canvasContext.clearRect(0, 0, state.canvas.width, state.canvas.height);
 		state.canvasContext.globalCompositeOperation = "lighter";
-
 		for (var i = 0, x = state.stars.length; i < x; i++) {
 			const s = state.stars[i];
 			state.canvasContext.fillStyle = "#000";
@@ -84,7 +79,6 @@ export default function DotConnection({magicPoint}) {
 			state.canvasContext.fillStyle = 'white';
 			state.canvasContext.stroke();
 		}
-
 		state.canvasContext.beginPath();
 		for (var i = 0, x = state.stars.length; i < x; i++) {
 			let starI = state.stars[i];
