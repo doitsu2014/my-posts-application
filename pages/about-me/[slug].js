@@ -45,9 +45,7 @@ export async function getStaticProps({ params }) {
 	const timeline = timelines.find(tl => tl.slug === params.slug);
 	return {
 		props: {
-			...timeline,
-			fromDate: timeline.toDate,
-			toDate: timeline.toDate
+			...timeline
 		}
 	}
 }
