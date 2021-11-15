@@ -68,10 +68,10 @@ class Timeline extends Component {
 													</svg>
 													:
 													<>
-														<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+														<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto sm:hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
 														</svg>
-														<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto hidden sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+														<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto md:hidden sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7l4-4m0 0l4 4m-4-4v18" />
 														</svg>
 													</>
@@ -95,10 +95,10 @@ class Timeline extends Component {
 									<div className="z-20 flex items-center order-1 bg-gray-400 shadow-xl w-12 h-12 rounded-full sm:col-auto sm:mb-8">
 										{
 											<>
-												<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+												<svg xmlns="http://www.w2.org/2000/svg" className="h-6 w-6 mx-auto sm:hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
 												</svg>
-												<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto hidden sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto md:hidden sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7l4-4m0 0l4 4m-4-4v18" />
 												</svg>
 											</>
