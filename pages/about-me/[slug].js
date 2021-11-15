@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import { useRouter } from 'next/router';
 import DataService from '../../services/dataService'
-import { times } from 'lodash';
 
 function AboutMeSlug({ slug, title, content }) {
 	return (
@@ -14,11 +12,9 @@ function AboutMeSlug({ slug, title, content }) {
 				<h1 className="text-2xl text-center font-bold">
 					{title}
 				</h1>
-
 				<p className="text-lg text-center">
 					{content}
 				</p>
-
 				<div className="h-screen grid grid-cols-1 justify-items-center">
 					<Link href="/">
 						<a className="text-lg font-semibold underline my-auto">
@@ -50,8 +46,8 @@ export async function getStaticProps({ params }) {
 	return {
 		props: {
 			...timeline,
-			fromDate: timeline.toDate.toISOString(),
-			toDate: timeline.toDate.toISOString()
+			fromDate: timeline.toDate,
+			toDate: timeline.toDate
 		}
 	}
 }

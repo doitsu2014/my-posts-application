@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Timeline from '../components/timeline'
+import DataService from '../services/dataService'
 
-export default function Home() {
+function Home({ timelines }) {
   return (
     <>
       <Head>
@@ -27,8 +28,20 @@ export default function Home() {
           </figcaption>
         </div>
       </figure>
-      <Timeline />
+      <Timeline timelines={timelines} />
     </>
-
   )
 }
+
+
+export async function getStaticProps() {
+  const service = new DataService();
+  const res = service.getTimelines();
+  return {
+    props: {
+      timelines: res
+    }
+  }
+}
+
+export default Home;

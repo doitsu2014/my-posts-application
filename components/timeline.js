@@ -1,15 +1,17 @@
 import { Component } from 'react'
 import moment from 'moment'
 import Link from 'next/link'
-import DataService from '../services/dataService'
 
 class Timeline extends Component {
 	constructor(props) {
 		super(props);
-		const dataService = new DataService();
 		this.state = {
-			lines: dataService.getTimelines()
-		}
+			lines: this.props.timelines.map(tl => {
+				tl.fromDate = tl.fromDate && moment(tl.fromDate);
+				tl.toDate = tl.fromDate && moment(tl.toDate);
+				return tl;
+			})
+		};
 	}
 
 	render() {
