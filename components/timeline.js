@@ -1,47 +1,14 @@
 import { Component } from 'react'
-import moment from 'moment';
+import moment from 'moment'
+import Link from 'next/link'
+import DataService from '../services/dataService'
+
 class Timeline extends Component {
 	constructor(props) {
 		super(props);
+		const dataService = new DataService();
 		this.state = {
-			lines: [
-				{
-					slug: 'easy-it-solutions',
-					title: `Easy IT Solutions (OneAP Team)`,
-					content: `They have been developing an ecosystem to provide a solution, that resolves problems about B2B Payments.`,
-					fromDate: moment('2019-07'),
-					toDate: moment(),
-					roles: ['Senior Dotnet Developer'],
-					isWorking: true,
-				},
-				{
-					slug: 'exe',
-					title: `ExE (Out-sourcing Team)`,
-					content: `There is an outsourcing development environment, I worked on it as an Engineer to develop outsource softwares.`,
-					roles: ['Fullstack Developer', 'Project Manager'],
-					fromDate: moment('2019-03'),
-					toDate: moment('2019-07'),
-					isWorking: false,
-				},
-				{
-					slug: 'reso-group',
-					title: `Reso Group`,
-					content: `A child company of Wisky Solution, It has been developing the softwares to serves F&B merchants, there are PoS, CMS.`,
-					roles: ['Team Leader'],
-					fromDate: moment('2018-06'),
-					toDate: moment('2019-03'),
-					isWorking: false,
-				},
-				{
-					slug: 'wisky',
-					title: `Wisky`,
-					content: `They are called as Wisky Solution Co., LTD, and they have been providing the solution about Wifi Marketing at Food and Beverage(F&B) merchants.`,
-					roles: ['Junior .Net Developer', 'Fullstack Developer', 'Trainer'],
-					fromDate: moment('2017-04'),
-					toDate: moment('2018-06'),
-					isWorking: false,
-				},
-			]
+			lines: dataService.getTimelines()
 		}
 	}
 
@@ -60,7 +27,7 @@ class Timeline extends Component {
 									<div className="border-2-2 absolute border-opacity-20 border-gray-700 h-full border left-1/2"></div>
 									<div className="mb-8 md:flex md:justify-between md:items-center w-full sm:grid sm:grid-cols-1 sm:justify-items-center">
 										<div className="order-1 w-5/12"></div>
-										<div className={`z-20 flex items-center order-1 bg-gray-400 shadow-xl w-12 h-12 rounded-full sm:col-auto ${isFirst ? 'sm:mb-4' : 'sm:mb-8'} ${isFirst && 'border-4 border-green-400 animate-bounce'}`}>
+										<div className={`z-20 flex items-center order-1 bg-gradient-to-r from-gray-300 to-gray-400 shadow-xl w-12 h-12 rounded-full sm:col-auto ${isFirst ? 'sm:mb-4' : 'sm:mb-8'} ${isFirst && 'border-4 border-green-400 animate-bounce'}`}>
 											{
 												isFirst ?
 													<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -77,22 +44,24 @@ class Timeline extends Component {
 													</>
 											}
 										</div>
-										<div className="order-1 bg-gradient-to-tr from-gray-100 to-gray-400 rounded-lg shadow-xl px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
-											<h2 className="mb-1 font-bold text-gray-800 text-xl text-justify">{l.title}</h2>
-											<h3 className="mb-2 italic text-md">{l.fromDate.format('YYYY-MM')} - {l.isWorking ? 'now' : l.toDate.format('YYYY-MM')} [{l.toDate.diff(l.fromDate, 'months')} month(s)]</h3>
-											<h3 className="mb-1 text-md">Work as a: </h3>
-											<ul className="mb-2 list-disc list-inside text-sm">
-												{l.roles.map((e, k) => (
-													<li key={k}>{e}</li>
-												))}
-											</ul>
-											<p className="mb-2 text-sm leading-snug tracking-wide text-gray-900 text-opacity-100 text-justify">{l.content}</p>
-										</div>
+										<Link href={`/about-me/${l.slug}`}>
+											<div className="order-1 cursor-pointer transition-all duration-500 bg-gradient-to-tr from-gray-100 to-gray-400 hover:from-gray-200 hover:to-gray-500 shadow-xl hover:shadow-2xl hover:drop-shadow-xl rounded-lg px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
+												<h2 className="mb-1 font-bold text-gray-800 text-xl text-justify">{l.title}</h2>
+												<h3 className="mb-2 italic text-md">{l.fromDate.format('YYYY/MM')} - {l.isWorking ? 'now' : l.toDate.format('YYYY/MM')}      [{l.toDate.diff(l.fromDate, 'months')} month(s)]</h3>
+												<h3 className="mb-1 text-md">Work as a: </h3>
+												<ul className="mb-2 list-disc list-inside text-sm">
+													{l.roles.map((e, k) => (
+														<li key={k}>{e}</li>
+													))}
+												</ul>
+												<p className="mb-2 text-sm leading-snug tracking-wide text-gray-900 text-opacity-100 text-justify">{l.content}</p>
+											</div>
+										</Link>
 									</div>
 								</div>
 								: <div key={k} className="mb-8 md:flex md:justify-between md:flex-row-reverse md:items-center w-full sm:grid sm:grid-cols-1 sm:justify-items-center">
 									<div className="order-1 w-5/12"></div>
-									<div className="z-20 flex items-center order-1 bg-gray-400 shadow-xl w-12 h-12 rounded-full sm:col-auto sm:mb-8">
+									<div className="z-20 flex items-center order-1 bg-gradient-to-l from-gray-300 to-gray-400 shadow-xl w-12 h-12 rounded-full sm:col-auto sm:mb-8">
 										{
 											<>
 												<svg xmlns="http://www.w2.org/2000/svg" className="h-6 w-6 mx-auto sm:hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,17 +73,19 @@ class Timeline extends Component {
 											</>
 										}
 									</div>
-									<div className="order-1 bg-gradient-to-tl from-green-100 to-green-400 rounded-lg shadow-xl px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
-										<h2 className="mb-1 font-bold text-black text-xl">{l.title}</h2>
-										<h3 className="mb-2 italic text-md">{l.fromDate.format('YYYY-MM')} - {l.toDate.format('YYYY-MM')} [{l.toDate.diff(l.fromDate, 'months')} month(s)]</h3> 
-										<h3 className="mb-1 text-md">Work as a: </h3>
-										<ul className="mb-2 list-disc list-inside text-sm">
-											{l.roles.map((e, k) => (
-												<li key={k}>{e}</li>
-											))}
-										</ul>
-										<p className="text-sm font-medium leading-snug tracking-wide text-black text-opacity-100 text-justify">{l.content}</p>
-									</div>
+									<Link href={`/about-me/${l.slug}`}>
+										<div className="order-1 cursor-pointer transition-all duration-500 bg-gradient-to-tr from-green-50 to-green-500 hover:from-green-200 hover:to-green-500 rounded-lg shadow-xl hover:shadow-2xl hover:drop-shadow-xl px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
+											<h2 className="mb-1 font-bold text-black text-xl">{l.title}</h2>
+											<h3 className="mb-2 italic text-md under">{l.fromDate.format('YYYY/MM')} - {l.toDate.format('YYYY/MM')} [{l.toDate.diff(l.fromDate, 'months')} month(s)]</h3>
+											<h3 className="mb-1 text-md">Work as a: </h3>
+											<ul className="mb-2 list-disc list-inside text-sm">
+												{l.roles.map((e, k) => (
+													<li key={k}>{e}</li>
+												))}
+											</ul>
+											<p className="text-sm font-medium leading-snug tracking-wide text-black text-opacity-100 text-justify">{l.content}</p>
+										</div>
+									</Link>
 								</div>
 						);
 					})}

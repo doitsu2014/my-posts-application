@@ -1,4 +1,3 @@
-# Version=$(date '+%Y%m%d%H%M%S')
 Version=$(git log --format="%h" -n 1)
 Repository="my-posts-application"
 
