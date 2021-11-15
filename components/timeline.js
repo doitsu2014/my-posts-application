@@ -19,8 +19,8 @@ class Timeline extends Component {
 					title: `ExE (Out-sourcing Team)`,
 					content: `There is an outsourcing development environment, I worked on it as an Engineer to develop outsource softwares.`,
 					roles: ['Fullstack Developer', 'Project Manager'],
-					fromDate: moment('2021-04'),
-					toDate: moment('2021-04'),
+					fromDate: moment('2019-03'),
+					toDate: moment('2019-07'),
 					isWorking: false,
 				},
 				{
@@ -79,7 +79,7 @@ class Timeline extends Component {
 										</div>
 										<div className="order-1 bg-gradient-to-tr from-gray-100 to-gray-400 rounded-lg shadow-xl px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
 											<h2 className="mb-1 font-bold text-gray-800 text-xl text-justify">{l.title}</h2>
-											<h3 className="mb-2 italic text-md">[{l.fromDate.format('YYYY-MM')} - {l.isWorking ? 'now' : l.toDate.format('YYYY-MM')}]</h3>
+											<h3 className="mb-2 italic text-md">[{l.fromDate.format('YYYY-MM')} - {l.isWorking ? 'now' : l.toDate.format('YYYY-MM')}] ({l.toDate.diff(l.fromDate, 'months')} month(s))</h3>
 											<h3 className="mb-1 text-md">Work as a: </h3>
 											<ul className="mb-2 list-disc list-inside text-sm">
 												{l.roles.map((e, k) => (
@@ -106,7 +106,7 @@ class Timeline extends Component {
 									</div>
 									<div className="order-1 bg-gradient-to-tl from-green-100 to-green-400 rounded-lg shadow-xl px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
 										<h2 className="mb-1 font-bold text-black text-xl">{l.title}</h2>
-										<h3 className="mb-2 italic text-md">[{l.fromDate.format('YYYY-MM')} - {l.toDate.format('YYYY-MM')}]</h3>
+										<h3 className="mb-2 italic text-md">[{l.fromDate.format('YYYY-MM')} - {l.toDate.format('YYYY-MM')}] ({l.toDate.diff(l.fromDate, 'months')} month(s))</h3> 
 										<h3 className="mb-1 text-md">Work as a: </h3>
 										<ul className="mb-2 list-disc list-inside text-sm">
 											{l.roles.map((e, k) => (
