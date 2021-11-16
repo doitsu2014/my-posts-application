@@ -35,7 +35,7 @@ export async function getStaticPaths() {
 		paths: timelines.map(tl => ({
 			params: { slug: tl.slug }
 		})),
-		fallback: false
+		fallback: true
 	}
 }
 

@@ -8,7 +8,7 @@ class Timeline extends Component {
 		this.state = {
 			lines: this.props.timelines.map(tl => {
 				tl.fromDate = tl.fromDate && moment(tl.fromDate);
-				tl.toDate = tl.fromDate && moment(tl.toDate);
+				tl.toDate = tl.toDate && tl.isWorking ? moment(tl.toDate) : moment();
 				return tl;
 			})
 		};

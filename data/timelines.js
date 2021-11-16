@@ -3,8 +3,8 @@ export const timelines = [
 		"slug": "easy-it-solutions",
 		"title": "Easy IT Solutions (OneAP Team)",
 		"content": "They have been developing an ecosystem to provide a solution, that resolves problems about B2B Payments.",
-		"fromDate": "2019/07",
-		"toDate": "2021/11",
+		"fromDate": "2019-07-01",
+		"toDate": "2021-11-01",
 		"roles": [
 			"Senior Dotnet Developer"
 		],
@@ -18,8 +18,8 @@ export const timelines = [
 			"Fullstack Developer",
 			"Project Manager"
 		],
-		"fromDate": "2019/03",
-		"toDate": "2019/07",
+		"fromDate": "2019-03-01",
+		"toDate": "2019-07-01",
 		"isWorking": false
 	},
 	{
@@ -29,8 +29,8 @@ export const timelines = [
 		"roles": [
 			"Team Leader"
 		],
-		"fromDate": "2018/06",
-		"toDate": "2019/03",
+		"fromDate": "2018-06-01",
+		"toDate": "2019-03-01",
 		"isWorking": false
 	},
 	{
@@ -42,8 +42,8 @@ export const timelines = [
 			"Fullstack Developer",
 			"Trainer"
 		],
-		"fromDate": "2017/04",
-		"toDate": "2018/06",
+		"fromDate": "2017-04-01",
+		"toDate": "2018-06-01",
 		"isWorking": false
 	}
 ]
