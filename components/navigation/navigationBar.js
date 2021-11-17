@@ -40,17 +40,29 @@ export default function NavigationBar() {
 	return (
 		<>
 			<div className="hidden md:flex md:w-full bg-black text-white text-sm">
-				<div className="container mx-auto py-2 flex justify-between">
-					<div className="flex">
-						<p className="self-center text-lg">✨  Welcome to my house, guys! ✨</p>
+				<div className="container mx-auto flex flex-row">
+					<div className="flex lg:w-4/12 md:w-6/12">
+						<h4 className="w-full m-auto text-left text-md">✨ Welcome to my house, guys! ✨</h4>
 					</div>
-					<form className="flex">
-						<input className="p-2 shadow-md rounded-lg placeholder-gray-500 border border-transparent text-black focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
-							name="txtSearchValue"
-							placeholder="Search ~~~~~~~~>" />
-						<button className="px-2 py-2 my-2 mx-4 transition-all duration-200 hover:bg-white hover:text-black hover:rounded-full">
+					<form className="flex flex-row-reverse md:w-6/12 lg:w-8/12">
+						<button className="px-2 py-1 mx-2 my-2 transition-all duration-200 hover:bg-white hover:text-black hover:rounded-full">
 							(╯°□°）╯︵ ┻━┻))
 						</button>
+						<input className="px-2
+								shadow-md
+								placeholder-gray-500
+								border
+								border-transparent
+								text-black
+								text-md
+								w-6/12
+								h-full
+								focus:outline-none
+								focus:ring-2
+								focus:ring-green-500
+								focus:border-transparent"
+							name="txtSearchValue"
+							placeholder="Looking ️for..." />
 					</form>
 				</div>
 			</div>
@@ -72,7 +84,6 @@ export default function NavigationBar() {
 						<button className="outline-none animate-bounce" onClick={evt => {
 							const currentCollapsedStatus = collapsedMobileMenu;
 							setCollapsedMobileMenu(!currentCollapsedStatus);
-							setTimeout(() => setHiddenMobileMenu(!currentCollapsedStatus), currentCollapsedStatus ? 0 : 300);
 						}}>
 
 							<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
@@ -84,21 +95,20 @@ export default function NavigationBar() {
 
 				{/* Mobile Navigation Section */}
 				<nav className={utilities.buildClassNames({
-					'hidden': hiddenMobileMenu,
-					'flex': !hiddenMobileMenu,
-					'flex-col': !hiddenMobileMenu,
 					'w-full': true,
 					'bg-black': true,
 					'text-white': true,
 					'text-lg': true,
 					'transition-all': true,
-					'ease-linear': true,
+					'ease-in': true,
 					'duration-300': true,
 					'transform': true,
-					'translate-x-144': collapsedMobileMenu,
-					'translate-x-0': !collapsedMobileMenu,
-				})}>
-					{menu.map((ele, i) => (<NavigationLink key={i} {...ele} isMobile={true} />))}
+					'flex': true,
+					'flex-col': true,
+				})} style={{
+					height: `${collapsedMobileMenu ? 0 : menu.length * 2.8}rem`
+				}}>
+					{!collapsedMobileMenu && menu.map((ele, i) => (<NavigationLink key={i} {...ele} isMobile={true} />))}
 				</nav>
 			</div>
 		</>

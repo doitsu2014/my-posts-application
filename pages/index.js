@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Timeline from '../components/timeline'
+import TimeLines from '../components/timelines'
 import DataService from '../services/dataService'
 
 function Home({ timelines }) {
@@ -28,7 +28,7 @@ function Home({ timelines }) {
           </figcaption>
         </div>
       </figure>
-      <Timeline timelines={timelines} />
+      <TimeLines timelines={timelines} />
     </>
   )
 }

@@ -46,7 +46,11 @@ module.exports = {
         'bounce-slow': "bounce 1s infinite",
         'bounce-medium': "bounce 0.8s infinite",
         'bounce-fast': "bounce 0.6s infinite"
-      }
+      },
+      transitionProperty: {
+        'height': 'height',
+        'spacing': 'margin, padding'
+      } 
     }
   },
   variants: {
