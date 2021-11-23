@@ -9,7 +9,7 @@ export default function NavigationBar() {
 	const router = useRouter();
 	const { locale } = router;
 	const titles = {
-		
+
 	};
 
 	const [menu, setMenu] = useState([
@@ -49,7 +49,6 @@ export default function NavigationBar() {
 				<div className="container mx-auto flex flex-row">
 					<div className="flex lg:w-4/12 md:w-6/12">
 						<NavigationSwitchingLanguages />
-						{/* <h4 className="w-full m-auto text-left text-md">✨ Welcome to my house, guys! ✨</h4> */}
 					</div>
 					<form className="flex flex-row-reverse md:w-6/12 lg:w-8/12">
 						<button className="px-2 py-1 mx-2 my-2 transition-all duration-200 hover:bg-white hover:text-black hover:rounded-full">
@@ -103,7 +102,7 @@ export default function NavigationBar() {
 				{/* Mobile Navigation Section */}
 				<nav className={utilities.buildClassNames({
 					'w-full': true,
-					'bg-black': true,
+					'bg-black': !collapsedMobileMenu,
 					'text-white': true,
 					'text-lg': true,
 					'transition-all': true,
@@ -113,9 +112,12 @@ export default function NavigationBar() {
 					'flex': true,
 					'flex-col': true,
 				})} style={{
-					height: `${collapsedMobileMenu ? 0 : menu.length * 2.8}rem`
+					height: `${collapsedMobileMenu ? 0 : (menu.length + 2) * 2.6}rem`
 				}}>
 					{!collapsedMobileMenu && menu.map((ele, i) => (<NavigationLink key={i} {...ele} isMobile={true} />))}
+					{!collapsedMobileMenu && <div className="w-full flex justify-center bg-transparent">
+						<NavigationSwitchingLanguages />
+					</div>}
 				</nav>
 			</div>
 		</>
