@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import DataService from '../../services/dataService'
+import { SUPPORT_LOCALES } from '../../common/constants';
 
 function AboutMeSlug({ slug, title, content }) {
 	return (
@@ -30,18 +31,27 @@ function AboutMeSlug({ slug, title, content }) {
 
 export async function getStaticPaths() {
 	const service = new DataService();
-	const timelines = service.getTimelines();
+	const vi_timelines = service.getTimelines(SUPPORT_LOCALES.vi);
+	const vi_paths = vi_timelines.map(tl => ({
+		params: { slug: tl.slug, },
+		locale: SUPPORT_LOCALES.vi
+	}));
+
+	const en_timelines = service.getTimelines(SUPPORT_LOCALES.en);
+	const en_paths = en_timelines.map(tl => ({
+		params: { slug: tl.slug, },
+		locale: SUPPORT_LOCALES.en
+	}));
+
 	return {
-		paths: timelines.map(tl => ({
-			params: { slug: tl.slug }
-		})),
+		paths: [...vi_paths, ...en_paths],
 		fallback: true
 	}
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
 	const service = new DataService();
-	const timelines = service.getTimelines();
+	const timelines = service.getTimelines(locale);
 	const timeline = timelines.find(tl => tl.slug === params.slug);
 	return {
 		props: {

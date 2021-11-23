@@ -1,4 +1,4 @@
-export const timelines = [
+[
 	{
 		"slug": "easy-it-solutions",
 		"title": "Easy IT Solutions (OneAP Team)",

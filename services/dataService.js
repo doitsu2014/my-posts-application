@@ -1,8 +1,14 @@
-import { server } from '../common/config'
-import { timelines } from '../data/timelines'
+import { SUPPORT_LOCALES } from "../common/constants"
+import vi_timelines from '../data/timelines/vi_timelines.json'
+import en_timelines from '../data/timelines/en_timelines.json'
 
 export default function DataService() {
-	this.getTimelinesAsync = async () => await fetch(`${server}/data/timelines.json`);
-	this.getTimelines = () => timelines;
+
+	/**
+	 * 
+	 * @param {string} locale 
+	 * @returns 
+	 */
+	this.getTimelines = (locale) => locale === SUPPORT_LOCALES.vi ? vi_timelines : en_timelines;
 	return this;
 }

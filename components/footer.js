@@ -15,7 +15,7 @@ export default function Footer() {
 					<li className="text-md font-semibold">Contact me:</li>
 					{state.contacts.map(c => {
 						return (
-							<li className="flex flex-grow p-2 border-l-2 hover:bg-white hover:text-black hover:rounded-lg">
+							<li key={c.key} className="flex flex-grow p-2 border-l-2 hover:bg-gradient-to-tr hover:from-gray-100 hover:to-gray-400 hover:text-black hover:rounded-lg">
 								{c.key === Facebook.name
 									? (<Facebook />)
 									: c.key === Linkedin.name

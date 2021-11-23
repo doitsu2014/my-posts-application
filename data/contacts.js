@@ -17,6 +17,6 @@ export const contacts = [
 	{
 		"key": "Skype",
 		"name": "Skype",
-		"reference": "live:thd1152018"
+		"reference": "https://join.skype.com/invite/l2ET5usWPXPW"
 	}
 ];

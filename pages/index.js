@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import TimeLines from '../components/timelines'
 import DataService from '../services/dataService'
 
@@ -34,9 +35,9 @@ function Home({ timelines }) {
 }
 
 
-export async function getStaticProps() {
+export async function getStaticProps({locale}) {
   const service = new DataService();
-  const res = service.getTimelines();
+  const res = service.getTimelines(locale);
   return {
     props: {
       timelines: res

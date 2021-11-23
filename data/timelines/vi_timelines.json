@@ -1,0 +1,49 @@
+[
+	{
+		"slug": "easy-it-solutions",
+		"title": "Easy IT Solutions (OneAP Team)",
+		"content": "Họ là một tập thể đã và đang phát triễn một hệ sinh thái cung cấp giải pháp, những giải pháp đó phục vụ chủ yếu vào lĩnh vực hổ trợ thanh toán cho Doanh Nghiệp và Doanh Nghiệp",
+		"fromDate": "2019-07-01",
+		"toDate": "2021-11-01",
+		"roles": [
+			"Senior Dotnet Developer"
+		],
+		"isWorking": true
+	},
+	{
+		"slug": "exe",
+		"title": "ExE (Out-sourcing Team)",
+		"content": "Đây là công ty chuyên gia công và sản xuất phần mềm dạng Out-sourcing, tôi đã từng làm việc tại nơi này như là một nhân sự được chuyển giao từ công ty mẹ.",
+		"roles": [
+			"Fullstack Developer",
+			"Project Manager"
+		],
+		"fromDate": "2019-03-01",
+		"toDate": "2019-07-01",
+		"isWorking": false
+	},
+	{
+		"slug": "reso-group",
+		"title": "Reso Group",
+		"content": "Một công ty nhánh con của Wisky Solution, hiện tại công ty đã và đang phát triễn những sản phẩm phần mềm phục vụ cho các cửa hàng F&B, ví dụ như là POS, CMS, Human Resource.",
+		"roles": [
+			"Team Leader"
+		],
+		"fromDate": "2018-06-01",
+		"toDate": "2019-03-01",
+		"isWorking": false
+	},
+	{
+		"slug": "wisky",
+		"title": "Wisky",
+		"content": "Một công ty chuyên cung cấp các giải pháp về Wifi Marketing tại các cửa hàng thiết kế và phát triễn theo hình dạng Food and Beverage(F&B).",
+		"roles": [
+			"Junior .Net Developer",
+			"Fullstack Developer",
+			"Trainer"
+		],
+		"fromDate": "2017-04-01",
+		"toDate": "2018-06-01",
+		"isWorking": false
+	}
+]
