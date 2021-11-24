@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import DataService from '../../services/dataService'
+import { getTimelines } from '../../services/dataService'
 import { SUPPORT_LOCALES } from '../../common/constants';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 function AboutMeSlug({ slug, title, content }) {
 	return (
@@ -30,14 +31,13 @@ function AboutMeSlug({ slug, title, content }) {
 }
 
 export async function getStaticPaths() {
-	const service = new DataService();
-	const vi_timelines = service.getTimelines(SUPPORT_LOCALES.vi);
+	const vi_timelines = getTimelines(SUPPORT_LOCALES.vi);
 	const vi_paths = vi_timelines.map(tl => ({
 		params: { slug: tl.slug, },
 		locale: SUPPORT_LOCALES.vi
 	}));
 
-	const en_timelines = service.getTimelines(SUPPORT_LOCALES.en);
+	const en_timelines = getTimelines(SUPPORT_LOCALES.en);
 	const en_paths = en_timelines.map(tl => ({
 		params: { slug: tl.slug, },
 		locale: SUPPORT_LOCALES.en
@@ -50,12 +50,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
-	const service = new DataService();
-	const timelines = service.getTimelines(locale);
+	const timelines = getTimelines(locale);
 	const timeline = timelines.find(tl => tl.slug === params.slug);
 	return {
 		props: {
-			...timeline
+			...timeline,
+			...await serverSideTranslations(locale, ['common'])
 		}
 	}
 }

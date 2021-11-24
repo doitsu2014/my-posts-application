@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export default function Programming() {
+function Programming() {
 	return (
 		<>
 			<Head>
@@ -25,3 +26,13 @@ export default function Programming() {
 	);
 
 }
+
+export async function getStaticProps({ locale }) {
+	return {
+		props: {
+			...await serverSideTranslations(locale, ['common'])
+		}
+	}
+}
+
+export default Programming

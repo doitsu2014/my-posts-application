@@ -1,4 +1,5 @@
 const PHASE_DEVELOPMENT_SERVER = require('next/constants')
+const { i18n } = require('./next-i18next.config')
 
 module.exports = (phase, { defaultConfig }) => {
 	/**
@@ -10,11 +11,7 @@ module.exports = (phase, { defaultConfig }) => {
 			BASE_DOMAIN: 'https://doitsu.tech',
 			POSTS_API: 'https://posts_api.doitsu.tech'
 		},
-		i18n: {
-			locales: ['default', 'en', 'vi'],
-			defaultLocale: 'default',
-			localeDetection: false
-		}
+		i18n
 	}
 
 	if (phase === PHASE_DEVELOPMENT_SERVER) {

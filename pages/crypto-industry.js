@@ -1,8 +1,9 @@
 import Script from 'next/script'
 import { useState } from "react"
 import Head from 'next/head'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export default function CryptoIndustry() {
+function CryptoIndustry() {
 	const [state, setstate] = useState({
 		dotEcosystem: [
 			'polkadot',
@@ -40,3 +41,13 @@ export default function CryptoIndustry() {
 		</>
 	);
 }
+
+export async function getStaticProps({ locale }) {
+	return {
+		props: {
+			...await serverSideTranslations(locale, ['common'])
+		}
+	}
+}
+
+export default CryptoIndustry

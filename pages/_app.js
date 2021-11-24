@@ -4,6 +4,7 @@ import Layout from '../components/layout'
 import Loading from '../components/loading'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { appWithTranslation } from 'next-i18next'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -34,7 +35,8 @@ function MyApp({ Component, pageProps }) {
       {
         loading
           ? <Loading />
-          : <Layout>
+          : 
+          <Layout>
             <Component {...pageProps} />
           </Layout>
       }
@@ -42,4 +44,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

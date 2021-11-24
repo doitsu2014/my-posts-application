@@ -4,28 +4,26 @@ import React, { useEffect, useState } from 'react';
 import utilities from '../../common/utilities';
 import NavigationLink from './navigationLink';
 import NavigationSwitchingLanguages from './navigationSwitchingLanguages';
-import DataService from '../../services/dataService';
+import { useTranslation } from 'react-i18next';
 
 export default function NavigationBar() {
 	const router = useRouter();
-	const { locale } = router;
-	const dataService = new DataService();
-	const navigationTitles = dataService.getApplicationTitles(locale)['navigation'];
+	const { t } = useTranslation('common');
 
 	const [menu, setMenu] = useState([
 		{
 			href: '/',
-			title: navigationTitles['aboutMe'],
+			title: t('aboutMe'),
 			isActive: false,
 		},
 		{
 			href: '/programming',
-			title: navigationTitles['programming'],
+			title: t('programming'),
 			isActive: false,
 		},
 		{
 			href: '/crypto-industry',
-			title: navigationTitles['cryptoIndustry'],
+			title: t('cryptoIndustry'),
 			isActive: false,
 		}
 	]);
