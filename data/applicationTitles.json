@@ -1,0 +1,34 @@
+{
+	"vi": {
+		"navigation": {
+			"aboutMe": "Về tôi",
+			"programming": "Lập trình",
+			"cryptoIndustry": "Tiền điện tử"
+		},
+		"timelinesComponent": {
+			"myJourney": "Hành trình của bản thân",
+			"now": "hiện tại",
+			"months": "tháng",
+			"workAsA": "Vị trí"
+		},
+		"footer": {
+			"contactMe": "Liên hệ"
+		}
+	},
+	"en": {
+		"navigation": {
+			"aboutMe": "About me",
+			"programming": "programming",
+			"cryptoIndustry": "Crypto Industry"
+		},
+		"timelinesComponent": {
+			"myJourney": "My Journey",
+			"now": "now",
+			"months": "month(s)",
+			"workAsA": "Work as a"
+		},
+		"footer": {
+			"contactMe": "Contact me"
+		}
+	}
+}

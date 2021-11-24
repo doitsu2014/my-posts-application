@@ -1,4 +1,4 @@
-export const contacts = [
+[
 	{
 		"key": "Instagram",
 		"name": "Instagram",
@@ -19,4 +19,4 @@ export const contacts = [
 		"name": "Skype",
 		"reference": "https://join.skype.com/invite/l2ET5usWPXPW"
 	}
-];
+]

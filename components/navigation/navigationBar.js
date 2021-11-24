@@ -4,34 +4,33 @@ import React, { useEffect, useState } from 'react';
 import utilities from '../../common/utilities';
 import NavigationLink from './navigationLink';
 import NavigationSwitchingLanguages from './navigationSwitchingLanguages';
+import DataService from '../../services/dataService';
 
 export default function NavigationBar() {
 	const router = useRouter();
 	const { locale } = router;
-	const titles = {
-
-	};
+	const dataService = new DataService();
+	const navigationTitles = dataService.getApplicationTitles(locale)['navigation'];
 
 	const [menu, setMenu] = useState([
 		{
 			href: '/',
-			title: 'About Me',
+			title: navigationTitles['aboutMe'],
 			isActive: false,
 		},
 		{
 			href: '/programming',
-			title: 'Programming',
+			title: navigationTitles['programming'],
 			isActive: false,
 		},
 		{
 			href: '/crypto-industry',
-			title: 'Crypto Industry',
+			title: navigationTitles['cryptoIndustry'],
 			isActive: false,
 		}
 	]);
 
 	const [collapsedMobileMenu, setCollapsedMobileMenu] = useState(true);
-	const [hiddenMobileMenu, setHiddenMobileMenu] = useState(true);
 	const updateMenuState = (url) => {
 		setMenu(menu.map(e => {
 			e.isActive = e.href === url;
