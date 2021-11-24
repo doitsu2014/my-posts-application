@@ -17,6 +17,6 @@ export default function DataService() {
 	 * @param {string} locale 
 	 * @returns {Object} 
 	 */
-	this.getApplicationTitles = (locale) => applicationTitles[locale] || {};
+	this.getApplicationTitles = (locale) => applicationTitles[locale] || applicationTitles[SUPPORT_LOCALES.en];
 	return this;
 }
