@@ -74,7 +74,7 @@ export default function TimeLines({ timelines }) {
 								<Link href={`/about-me/${l.slug}`}>
 									<div className="order-1 cursor-pointer transition-all duration-500 bg-gradient-to-tr from-green-50 to-green-500 hover:from-green-200 hover:to-green-500 rounded-lg shadow-xl hover:shadow-2xl hover:drop-shadow-xl px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
 										<h2 className="mb-1 font-bold text-black text-xl">{l.title}</h2>
-										<h3 className="mb-2 italic text-md">{mmFromDate.format('YYYY/MM')} - {mmToDate.format('YYYY/MM')} [{mmToDate.diff(mmFromDate, 'months')} {t['months']}]</h3>
+										<h3 className="mb-2 italic text-md">{mmFromDate.format('YYYY/MM')} - {mmToDate.format('YYYY/MM')} [{mmToDate.diff(mmFromDate, 'months')} {t('months')}]</h3>
 										<h3 className="mb-1 text-md">{t('workAsA')}: </h3>
 										<ul className="mb-2 list-disc list-inside text-sm">
 											{l.roles.map((e, k) => (
