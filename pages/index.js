@@ -44,7 +44,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       timelines: res,
-      ...await serverSideTranslations(locale, ['common', 'timelines'])
+      ...await serverSideTranslations(locale, ['common', 'index', 'timelines'])
     }
   }
 }
