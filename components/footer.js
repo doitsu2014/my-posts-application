@@ -10,7 +10,7 @@ export default function Footer() {
 	return (
 		<footer className="w-full border-t bg-black text-white">
 			<div className="container mx-auto flex flex-row justify-between">
-				<ul className="list-item list-none p-4">
+				<ul className="list-item list-none p-4 lg:w-2/12 md:w-2/6 sm:w-1/2">
 					<li className="text-md font-semibold">{t('contactMe')}:</li>
 					{contacts.map(c => {
 						return (
@@ -28,15 +28,14 @@ export default function Footer() {
 					})}
 				</ul>
 
-				<a
-					className="flex items-center justify-center"
-					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Powered by{' '}
-					<Image src={localPic} alt="D.TECH Logo" className="h-32 ml-4" />
-				</a>
+				<div className="grid grid-cols-3 lg:w-3/12 md:w-3/6 sm:w-2/3">
+					<p className="flex col-span-1 items-center justify-center">
+						Powered by{' '}
+					</p>
+					<a className="h-full col-span-2" href="~/" target="_blank">
+						<Image src={localPic} alt="D.TECH Logo" layout="intrinsic" />
+					</a>
+				</div>
 			</div>
 		</footer>
 	);

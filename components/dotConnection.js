@@ -16,6 +16,7 @@ export default function DotConnection({ magicPoint }) {
 		const handleWindowResize = () => {
 			initial();
 		}
+
 		const handleWindowMouseMove = (evt) => {
 			setState({
 				...state,
@@ -29,11 +30,12 @@ export default function DotConnection({ magicPoint }) {
 		window.addEventListener('mousemove', handleWindowMouseMove);
 		window.addEventListener('load', handleWindowResize);
 		window.addEventListener('resize', handleWindowResize);
+
 		return () => {
 			window.removeEventListener('mousemove', handleWindowMouseMove);
 			window.removeEventListener('load', handleWindowResize);
 			window.removeEventListener('resize', handleWindowResize);
-		}
+		};
 	}, [state])
 
 	useAnimationFrame(() => {
