@@ -30,8 +30,8 @@ function CryptoIndustry() {
 			<section className="mt-8 mx-auto sm:w-11/12 md:w-4/5 bg-none p-4">
 				<h1 className="sm:text-lg md:text-2xl font-bold py-4 text-center">Dot and Kusama ecosystem charts</h1>
 				<div className="grid md:grid-cols-2 sm:grid-cols-1">
-					{state.dotEcosystem.map(e => (
-						<div className="p-4">
+					{state.dotEcosystem.map((e, i) => (
+						<div className="p-4" key={i}>
 							<br />
 							<coingecko-coin-price-chart-widget coin-id={e} currency="usd" height="300" locale="en"></coingecko-coin-price-chart-widget>
 						</div>

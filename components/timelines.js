@@ -42,7 +42,7 @@ export default function TimeLines({ timelines }) {
 												</>
 										}
 									</div>
-									<Link href={`/about-me/${l.slug}`}>
+									<Link href={`/about-me/${l.slug}`} passHref={true}>
 										<div className="order-1 cursor-pointer transition-all duration-500 bg-gradient-to-tr from-gray-100 to-gray-400 hover:from-gray-200 hover:to-gray-500 shadow-xl hover:shadow-2xl hover:drop-shadow-xl rounded-lg px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
 											<h2 className="mb-1 font-bold text-gray-800 text-xl text-justify">{l.title}</h2>
 											<h3 className="mb-2 italic text-md">{mmFromDate.format('YYYY/MM')} - {l.isWorking ? t('now') : mmToDate.format('YYYY/MM')} [{mmToDate.diff(mmFromDate, 'months')} {t('months')}]</h3>
@@ -71,7 +71,7 @@ export default function TimeLines({ timelines }) {
 										</>
 									}
 								</div>
-								<Link href={`/about-me/${l.slug}`}>
+								<Link href={`/about-me/${l.slug}`} passHref={true}>
 									<div className="order-1 cursor-pointer transition-all duration-500 bg-gradient-to-tr from-green-50 to-green-500 hover:from-green-200 hover:to-green-500 rounded-lg shadow-xl hover:shadow-2xl hover:drop-shadow-xl px-6 py-4 md:w-5/12 sm:w-full sm:z-20 sm:col-auto">
 										<h2 className="mb-1 font-bold text-black text-xl">{l.title}</h2>
 										<h3 className="mb-2 italic text-md">{mmFromDate.format('YYYY/MM')} - {mmToDate.format('YYYY/MM')} [{mmToDate.diff(mmFromDate, 'months')} {t('months')}]</h3>

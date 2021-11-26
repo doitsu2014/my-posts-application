@@ -5,6 +5,8 @@ import utilities from '../../common/utilities';
 import NavigationLink from './navigationLink';
 import NavigationSwitchingLanguages from './navigationSwitchingLanguages';
 import { useTranslation } from 'react-i18next';
+import localPic from '../../public/rectangle/logo_transparent_background.png';
+import Image from 'next/image';
 
 export default function NavigationBar() {
 	const router = useRouter();
@@ -27,17 +29,16 @@ export default function NavigationBar() {
 			isActive: false,
 		}
 	]);
-
 	const [collapsedMobileMenu, setCollapsedMobileMenu] = useState(true);
-	const updateMenuState = (url) => {
-		setMenu(menu.map(e => {
-			e.isActive = e.href === url;
-			return e;
-		}));
-	}
 
 	useEffect(() => {
-		updateMenuState(router.asPath);
+		const updateMenu = () => {
+			setMenu(m => m.map(e => {
+				e.isActive = e.href === router.asPath;
+				return e;
+			}));
+		};
+		updateMenu();
 	}, [router])
 
 	return (
@@ -72,10 +73,11 @@ export default function NavigationBar() {
 
 			<div className="w-full bg-gray-300 bg-opacity-50 text-black text-xl font-bold">
 				<div className="container py-4 mx-auto flex justify-between">
-					<div className="box-content">
+					<div className="box-content md:w-3/12 sm:w-2/3">
 						<Link href="/">
-							<a>
-								<img src="/rectangle/logo_transparent_background.png" alt="Doitsu Technology Logo" className="object-scale-down md:h-32 sm:h-24" />
+							<a >
+								<Image src={localPic} alt="Doitsu Technology Logo"
+									layout="intrinsic" />
 							</a>
 						</Link>
 					</div>

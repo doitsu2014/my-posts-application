@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "lint": "next lint",
     "start": "next start"
   },
   "dependencies": {
@@ -19,6 +20,8 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.4",
     "autoprefixer": "^10.2.6",
+    "eslint": "7.32.0",
+    "eslint-config-next": "12.0.4",
     "postcss": "^8.3.5",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",

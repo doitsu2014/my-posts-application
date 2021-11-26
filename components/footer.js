@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import contacts from '../data/contacts.json'
+import contacts from '../data/contacts.json';
 import { Facebook, Linkedin, Skype, Intstagram } from './icons/socials';
+import localPic from '../public/square/white_logo_transparent_background.png';
+import Image from 'next/image';
 
 export default function Footer() {
 	const { t } = useTranslation('common');
@@ -33,7 +35,7 @@ export default function Footer() {
 					rel="noopener noreferrer"
 				>
 					Powered by{' '}
-					<img src="/square/white_logo_transparent_background.png" alt="D.TECH Logo" className="h-32 ml-4" />
+					<Image src={localPic} alt="D.TECH Logo" className="h-32 ml-4" />
 				</a>
 			</div>
 		</footer>

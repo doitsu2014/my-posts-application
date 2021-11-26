@@ -13,15 +13,28 @@ export default function DotConnection({ magicPoint }) {
 	})
 
 	useEffect(() => {
-		initial();
-
+		const handleWindowResize = () => {
+			initial();
+		}
+		const handleWindowMouseMove = (evt) => {
+			setState({
+				...state,
+				mouse: {
+					x: evt.clientX + window.scrollX,
+					y: evt.clientY + window.scrollY
+				}
+			});
+		}
+		
 		window.addEventListener('mousemove', handleWindowMouseMove);
+		window.addEventListener('load', handleWindowResize);
 		window.addEventListener('resize', handleWindowResize);
 		return () => {
 			window.removeEventListener('mousemove', handleWindowMouseMove);
+			window.removeEventListener('load', handleWindowResize);
 			window.removeEventListener('resize', handleWindowResize);
 		}
-	}, [])
+	}, [state])
 
 	useAnimationFrame(() => {
 		if (state.canvas && state.canvasContext) {
@@ -29,20 +42,6 @@ export default function DotConnection({ magicPoint }) {
 			update();
 		}
 	});
-
-	const handleWindowResize = () => {
-		initial();
-	}
-
-	const handleWindowMouseMove = (evt) => {
-		setState({
-			...state,
-			mouse: {
-				x: evt.clientX + window.scrollX,
-				y: evt.clientY + window.scrollY
-			}
-		});
-	}
 
 	const initial = () => {
 		setState(state => {
