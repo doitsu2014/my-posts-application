@@ -18,7 +18,7 @@ function Home({ timelines }) {
         <title>{tCommon['aboutMe']} | D.TECH</title>
       </Head>
       <figure className="md:flex bg-gray-300 overflow-hidden text-black drop-shadow-xl shadow-xl container mx-auto rounded-2xl p-8 md:p-0 md:max-w-4xl sm:w-11/12">
-        <div className="flex mx-auto sm:w-40 sm:h-40 md:w-full md:h-full">
+        <div className="flex mx-auto sm:w-40 sm:h-40 md:w-full md:h-80">
           <Image  
             src={blackAndWhiteDucThAvatar} 
             alt="ducth_black_and_white.jpg" 

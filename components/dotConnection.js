@@ -1,8 +1,10 @@
+import { useRouter } from 'next/dist/client/router';
 import { useRef, useState, useEffect } from 'react';
 import useAnimationFrame from 'use-animation-frame';
 
 export default function DotConnection({ magicPoint }) {
 	const canvasRef = useRef();
+	const router = useRouter();
 	const [state, setState] = useState({
 		canvas: null,
 		canvasContext: null,
@@ -14,7 +16,7 @@ export default function DotConnection({ magicPoint }) {
 
 	useEffect(() => {
 		const handleWindowResize = () => {
-			initial();
+			setState(initial)
 		}
 
 		const handleWindowMouseMove = (evt) => {
@@ -26,15 +28,15 @@ export default function DotConnection({ magicPoint }) {
 				}
 			});
 		}
-		
-		window.addEventListener('mousemove', handleWindowMouseMove);
+
 		window.addEventListener('load', handleWindowResize);
 		window.addEventListener('resize', handleWindowResize);
+		window.addEventListener('mousemove', handleWindowMouseMove);
 
 		return () => {
-			window.removeEventListener('mousemove', handleWindowMouseMove);
 			window.removeEventListener('load', handleWindowResize);
 			window.removeEventListener('resize', handleWindowResize);
+			window.removeEventListener('mousemove', handleWindowMouseMove);
 		};
 	}, [state])
 
@@ -43,29 +45,30 @@ export default function DotConnection({ magicPoint }) {
 			draw();
 			update();
 		}
+		else {
+			setState(initial);
+		}
 	});
 
-	const initial = () => {
-		setState(state => {
-			state.canvas = canvasRef.current;
-			state.canvas.width = window.innerWidth;
-			state.canvas.height = window.document.querySelector('body').clientHeight;
-			state.numberOfStars = parseInt((state.canvas.height + state.canvas.width) / 10);
-			const stars = [];
-			for (var i = 0; i < state.numberOfStars; i++) {
-				stars.push({
-					x: Math.random() * state.canvas.width,
-					y: Math.random() * state.canvas.height,
-					radius: Math.random() * 1 + 1,
-					vx: Math.floor(Math.random() * 50) - 25,
-					vy: Math.floor(Math.random() * 50) - 25
-				});
-			}
+	const initial = state => {
+		state.canvas = canvasRef.current;
+		state.canvas.width = window.innerWidth;
+		state.canvas.height = window.document.querySelector('body').clientHeight;
+		state.numberOfStars = parseInt((state.canvas.height + state.canvas.width) / 10);
+		const stars = [];
+		for (var i = 0; i < state.numberOfStars; i++) {
+			stars.push({
+				x: Math.random() * state.canvas.width,
+				y: Math.random() * state.canvas.height,
+				radius: Math.random() * 1 + 1,
+				vx: Math.floor(Math.random() * 50) - 25,
+				vy: Math.floor(Math.random() * 50) - 25
+			});
+		}
 
-			state.stars = stars;
-			state.canvasContext = state.canvas.getContext('2d')
-			return state;
-		});
+		state.stars = stars;
+		state.canvasContext = state.canvas.getContext('2d')
+		return state;
 	}
 
 	const draw = () => {
